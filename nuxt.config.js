@@ -23,6 +23,7 @@ export default {
   ** Global CSS
   */
   css: [
+    '@/assets/scss/main.scss'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -46,11 +47,11 @@ export default {
   */
   build: {
     postcss: {
-      "plugins": {
-        "postcss-import": {},
-        "postcss-url": {},
+      'plugins': {
+        'postcss-import': {},
+        'postcss-url': {},
         // to edit target browsers: use "browserslist" field in package.json
-        "autoprefixer": {}
+        'autoprefixer': {}
       }
     },
     /*
