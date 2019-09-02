@@ -1,0 +1,146 @@
+@import "../../assets/variables.scss";
+
+nav {
+  padding-top: 20px;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+
+    a {
+      font-size: 14px;
+      line-height: 12px;
+      transition: all 0.3s;
+      color: $c-7;
+
+      &::first-letter {
+        text-transform: uppercase;
+      }
+      &.nuxt-link-active {
+        font-weight: 700;
+      }
+    }
+
+    .left,
+    .right {
+      display: flex;
+    }
+
+    // NAV-LEFT
+    .left {
+      a.logo {
+        display: block;
+        line-height: 0;
+        width: 95px;
+        height: 27px;
+      }
+
+      .navigation {
+        display: flex;
+        align-items: flex-end;
+        margin: 0 20px;
+
+        a {
+          @mixin mg-right($child, $val) {
+            &:nth-child(#{$child}) {
+              margin-right: #{$val}px;
+            }
+          }
+
+          @include mg-right(1, 17);
+          @include mg-right(2, 17);
+          @include mg-right(3, 16);
+          @include mg-right(4, 13);
+        }
+      }
+
+      .add-wrapp {
+        position: relative;
+        height: 100%;
+        .add-btn {
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
+      }
+    }
+
+    //NAV-RIGHT
+    .right {
+      display: flex;
+      align-items: flex-end;
+
+      .bell-wrapp {
+        position: relative;
+        width: 16px;
+        height: 18px;
+        // background-color: darkblue;
+        .inner {
+          position: relative;
+          width: 100%;
+          height: 100%;
+
+          transform-origin: 50% 0%;
+          transform: rotate(0deg);
+          background-image: url("/img/icons/bell/bell-icon.svg");
+          background-position: center;
+          background-size: contain;
+          background-repeat: no-repeat;
+
+
+          &::before,
+          &::after {
+            content: "";
+            position: absolute;
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+          }
+          &::before {
+            width: 6px;
+            height: 4px;
+            bottom: -0px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-image: url("/img/icons/bell/bell-icon__hammer.svg");
+          }
+          &::after {
+            width: 6px;
+            height: 6px;
+            right: 1px;
+            top: 4px;
+            background-image: url("/img/icons/bell/bell-icon__dot.svg");
+            transform-origin: center;
+            transform: scale(0);
+            transition: transform .3s;
+            transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275)
+          }
+
+        }
+        &.active {
+          .inner {
+            animation: bell .7s ease;
+            animation-fill-mode: both;
+            &::before {
+              animation: hammer .7s ease .2s;
+              animation-fill-mode: both;
+            }
+            &::after {
+              transform: scale(1);
+            }
+          }
+          @keyframes hammer {
+            0% { left: 50%; }
+            50% { left: 75%; }
+            100% { left: 50%; }
+          }
+          @keyframes bell {
+            0% { transform: rotate(0deg); }
+            50% { transform: rotate(15deg); }
+            100% { transform: rotate(0deg) ; }
+          }
+        }
+      }
+    }
+  }
+}
