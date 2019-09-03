@@ -1,0 +1,87 @@
+
+/*bell animation */
+.bell-wrapp {
+  position: relative;
+  width: 16px;
+  height: 18px;
+  margin: 0 19px;
+  top: -1px;
+  .inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    transform-origin: 50% 0%;
+    transform: rotate(0deg);
+    background-image: url("/img/icons/bell/bell-icon.svg");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      will-change: transform;
+    }
+    &::before {
+      width: 6px;
+      height: 4px;
+      bottom: -0px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-image: url("/img/icons/bell/bell-icon__hammer.svg");
+    }
+    &::after {
+      width: 6px;
+      height: 6px;
+      right: 1px;
+      top: 4px;
+      background-image: url("/img/icons/bell/bell-icon__dot.svg");
+      transform-origin: center;
+      transform: scale(0);
+      transition: transform 0.4s;
+      transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      will-change: transform;
+    }
+  }
+  &.active {
+
+    .inner {
+      animation: bell 0.7s ease;
+      animation-fill-mode: forwards;
+      &::before {
+        animation: hammer 0.7s ease 0.2s;
+        animation-fill-mode: forwards;
+      }
+      &::after {
+        transform: scale(1);
+      }
+    }
+    @keyframes hammer {
+      0% {
+        left: 50%;
+      }
+      50% {
+        left: 75%;
+      }
+      100% {
+        left: 50%;
+      }
+    }
+    @keyframes bell {
+      0% {
+        transform: rotate(0deg);
+      }
+      50% {
+        transform: rotate(15deg);
+      }
+      100% {
+        transform: rotate(0deg);
+      }
+    }
+  }
+}

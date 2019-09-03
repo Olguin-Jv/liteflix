@@ -1,11 +1,10 @@
 @import "../../assets/variables.scss";
 
 nav {
-  padding-top: 20px;
+  padding-top: 22px;
 
   .container {
     display: flex;
-    justify-content: space-between;
 
     a {
       font-size: 14px;
@@ -20,124 +19,85 @@ nav {
         font-weight: 700;
       }
     }
-
-    .left,
-    .right {
+    .menu {
+      width: calc(100% - 95px);
       display: flex;
-    }
+      justify-content: space-between;
 
-    // NAV-LEFT
-    .left {
-      a.logo {
-        display: block;
-        line-height: 0;
-        width: 95px;
-        height: 27px;
-      }
-
-      .navigation {
-        display: flex;
-        align-items: flex-end;
-        margin: 0 20px;
-
-        a {
-          @mixin mg-right($child, $val) {
-            &:nth-child(#{$child}) {
-              margin-right: #{$val}px;
-            }
-          }
-
-          @include mg-right(1, 17);
-          @include mg-right(2, 17);
-          @include mg-right(3, 16);
-          @include mg-right(4, 13);
-        }
-      }
-
-      .add-wrapp {
-        position: relative;
+      .left,
+      .right {
         height: 100%;
-        .add-btn {
-          position: absolute;
-          left: 0;
-          top: 0;
+        display: flex;
+        align-items: center;
+      }
+
+      // NAV-LEFT
+      .left {
+        a.logo {
+          display: block;
+          line-height: 0;
+          width: 95px;
+          height: 27px;
+        }
+
+        .navigation {
+          display: flex;
+          align-items: flex-end;
+          margin: 0 20px;
+
+          a {
+            @mixin mg-right($child, $val) {
+              &:nth-child(#{$child}) {
+                margin-right: #{$val}px;
+              }
+            }
+
+            @include mg-right(1, 17);
+            @include mg-right(2, 17);
+            @include mg-right(3, 16);
+            @include mg-right(4, 13);
+          }
+        }
+
+        .add-btn-wrapp {
+          position: relative;
+          height: 100%;
         }
       }
-    }
 
-    //NAV-RIGHT
-    .right {
-      display: flex;
-      align-items: flex-end;
-
-      .bell-wrapp {
-        position: relative;
-        width: 16px;
-        height: 18px;
-        // background-color: darkblue;
-        .inner {
+      //NAV RIGHT
+      .right {
+        .dropdown {
           position: relative;
-          width: 100%;
-          height: 100%;
+          width: 47px;
+          height: 25px;
+          display: flex;
 
-          transform-origin: 50% 0%;
-          transform: rotate(0deg);
-          background-image: url("/img/icons/bell/bell-icon.svg");
-          background-position: center;
-          background-size: contain;
-          background-repeat: no-repeat;
-
-
-          &::before,
           &::after {
             content: "";
             position: absolute;
-            background-position: center;
-            background-size: contain;
-            background-repeat: no-repeat;
-          }
-          &::before {
-            width: 6px;
-            height: 4px;
-            bottom: -0px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-image: url("/img/icons/bell/bell-icon__hammer.svg");
-          }
-          &::after {
-            width: 6px;
+            right: 0px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
             height: 6px;
-            right: 1px;
-            top: 4px;
-            background-image: url("/img/icons/bell/bell-icon__dot.svg");
-            transform-origin: center;
-            transform: scale(0);
-            transition: transform .3s;
-            transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275)
+            background-image: url("/img/icons/arrow.svg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
           }
 
-        }
-        &.active {
-          .inner {
-            animation: bell .7s ease;
-            animation-fill-mode: both;
-            &::before {
-              animation: hammer .7s ease .2s;
-              animation-fill-mode: both;
+          .user-pic {
+            width: 25px;
+            height: 25px;
+            border-radius: 100%;
+            background-color: red;
+            overflow: hidden;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
             }
-            &::after {
-              transform: scale(1);
-            }
-          }
-          @keyframes hammer {
-            0% { left: 50%; }
-            50% { left: 75%; }
-            100% { left: 50%; }
-          }
-          @keyframes bell {
-            0% { transform: rotate(0deg); }
-            50% { transform: rotate(15deg); }
-            100% { transform: rotate(0deg) ; }
           }
         }
       }
