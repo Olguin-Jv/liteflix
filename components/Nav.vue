@@ -3,6 +3,7 @@
     .container
       a.logo(href='#')
         img(src='img/liteflix-logo.svg' alt="liteflix logo")
+
       .menu
         .left
           .navigation
@@ -10,13 +11,19 @@
           .add-btn-wrapp
             button(@click="click").add-btn
               span agregar película
+
         .right
           a Niños
           .bell-wrapp(:class="{active: bell}")
             .inner
-          .dropdown
-            .user-pic
-              img(src='img/profile-placeholder.svg' alt='profile img')
+          .menu-dropdown
+            .inner(@click="toggleDropdown")
+              .user-pic
+                img(src='img/profile-placeholder.svg' alt='profile img')
+            .dropdown(:class="{active: menuDropdown}")
+              .user(v-for="user in users" :key="user.name")
+                img(:src='user.img' alt='profile img')
+                p {{ user.name }}
 </template>
 
 <script>
@@ -30,12 +37,21 @@ export default {
         { name: 'agregados recientemente', to: 'recientes' },
         { name: 'mi lista', to: 'mis-listas' }
       ],
-      bell: false
+      users: [ /* hardcoded user list */
+        { name: 'Ernesto Gonzalez', img: 'img/profile-placeholder.svg' },
+        { name: 'User 02', img: 'img/profile-placeholder.svg' },
+        { name: 'User 03', img: 'img/profile-placeholder.svg' }
+      ],
+      bell: false,
+      menuDropdown: false
     }
   },
   methods: {
     click () {
       this.bell = !this.bell
+    },
+    toggleDropdown () {
+      this.menuDropdown = !this.menuDropdown
     }
   }
 }
