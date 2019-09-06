@@ -113,16 +113,14 @@ nav {
             padding: 11px 10px;
 
             width: 130px;
-            height: 150px;
             border-radius: 5px;
             background-color: $c-7;
             
-            transform: scaleY(.7);
+            transform: scaleY(.5);
             transform-origin: 50% 0%;
-            clip-path: circle(0px at 98px -7px);
             opacity: 0;
-            will-change: clip-path, opacity, transform;
-            transition: clip-path .5s, opacity .5s, transform .5s;
+            will-change: opacity, transform;
+            transition: opacity .2s, transform .2s;
             transition-timing-function: cubic-bezier(.47,.8,.69,1.29);
 
             &::after {
@@ -143,7 +141,6 @@ nav {
 
             &.active {
               transform: scaleY(1);
-              clip-path: circle(140% at 98px -7px);
               opacity: 1;
             }
             .user {
@@ -152,9 +149,10 @@ nav {
               display: flex;
               align-items: center;
               border-radius: 50px;
+              cursor: pointer;
 
-              transition: box-shadow .5s;
               will-change: box-shadow;
+              transition: box-shadow .5s;
 
               &:hover {
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -182,6 +180,24 @@ nav {
                 line-clamp: 1;
                 text-overflow: ellipsis;
                 overflow: hidden;
+              }
+            }
+
+            .options {
+              width: 100%;
+              padding-top: 3px;
+              a {
+                display: block;
+                width: 100%;
+                font-size: 12px;
+                color: $c-1;
+                border-bottom: 1px solid $c-1;
+                padding: 8px 0px;
+                &:last-child {
+                  border-bottom: 0px;
+                  padding-top: 9px;
+                  padding-bottom: 0;
+                }
               }
             }
 

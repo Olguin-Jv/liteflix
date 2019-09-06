@@ -7,7 +7,7 @@
       .menu
         .left
           .navigation
-            nuxt-link(v-for='section in sections' :key="section.to" :to="section.to" title='title') {{section.name}}
+            nuxt-link(v-for='section in sections' :key="section.to" :to="section.to") {{section.name}}
           .add-btn-wrapp
             button(@click="click").add-btn
               span agregar película
@@ -24,6 +24,11 @@
               .user(v-for="user in users" :key="user.name")
                 img(:src='user.img' alt='profile img')
                 p {{ user.name }}
+              .options
+                nuxt-link(to="configuration") Configuración
+                nuxt-link(to="help") Ayuda
+                nuxt-link(to="/") Log Out
+
 </template>
 
 <script>
