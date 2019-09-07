@@ -1,5 +1,15 @@
-<template lang="pug">
+<template lang='pug'>
+  hero
 </template>
 
-<style lang="scss">
+<script>
+import Hero from '~/components/landing/Hero.vue'
+export default {
+  components: {
+    Hero
+  }
+}
+</script>
+
+<style lang='scss'>
 </style>

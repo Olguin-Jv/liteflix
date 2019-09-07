@@ -1,3 +1,4 @@
+/*COLORS: */
 $c-1: #000000;
 $c-2: #4a4a4a;
 $c-3: #9b9b9b;
@@ -12,5 +13,17 @@ $c-11: #0076ff;
 $c-12: #ce00ff;
 $c-13: #4a90e2;
 
+/*ALPHA COLORS*/
+$a-1: rgba(0,0,0,.5);
+$a-2: rgba(0, 0, 0, 0.7);
+
+/*GRADIENTS*/
+$g-1: linear-gradient(to top, rgba(0, 0, 0, 0.14) 0%, rgba(0, 0, 0, 0.7) 100%);
+
+/*FONTS: */
 $montserrat: 'Montserrat', sans-serif;
 $robotoSlab: 'Roboto Slab', serif;
+
+/*IMAGES: */
+$play-shape: url("/img/icons/play-shape.svg");
+$plus-shape: url("/img/icons/plus-shape.svg");
