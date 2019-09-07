@@ -1,7 +1,19 @@
 @import "../../assets/variables.scss";
 
 nav {
+  position: fixed;
+  height: 75px;
+  top: 0;
+  left: 0;
+  right: 0;
   padding-top: 22px;
+  z-index: 100;
+  background-color: transparent;
+  transition: all .5s;
+  &.dark-bg {
+    background-color: $a-2;
+    box-shadow: 0px 3px 9px $a-2;
+  }
 
   .container {
     display: flex;
