@@ -1,6 +1,30 @@
+@import "./variables.scss";
+
 .container {
   position: relative;
   width: 95%;
   max-width: 1110px;
   margin: 0 auto;
+}
+
+.badge {
+  padding: 0 5px;
+  margin: 0 6px;
+  border-radius: 50px;
+  background-color: rgba(255,255,255,.2);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+  grid-gap: 30px;
+  .movie-card {
+    border: 1px solid black; //temporal
+  }
+}
+
+@media screen and (max-width: $bp-1) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  }
 }
