@@ -2,6 +2,11 @@
   .movie-card(:class="cardType" :style="{'background-image': `url('${bgImg}')`}")
     .wrapper
       .movie-card__info
+
+        button.btn-sm.play
+        button.btn-sm.like
+        button.btn-sm.add
+
         h3 {{ movie.title }}
         .inner
           p {{ movie.coincidence }} coincidencia
@@ -9,9 +14,6 @@
             span.badge {{ movie.ageRate }}
           p &nbsp;{{ movie.duration }}
         p {{ movie.genre }}
-        button.btn-sm.play
-        button.btn-sm.like
-        button.btn-sm.add
 </template>
 
 <script>

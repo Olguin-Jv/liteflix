@@ -1,23 +1,23 @@
 <template lang="pug">
-  section#upcoming-movies
-    h2.container Próximamente
-    transition-group(name="card").grid.container
-      movie-card(v-for="(movie, index) in upcomingMovies"
+  section#popular-movies.container
+    h2 Populares de liteflix
+    transition-group(name="card").grid
+      movie-card(v-for="(movie, index) in popularMovies"
                 :key="movie.id"
-                :card-type="'small'"
+                :card-type="'big'"
                 :movie="movie")
 </template>
 
 <script>
 import MovieCard from '~/components/landing/MovieCard.vue'
 export default {
-  name: 'UpcomingMovies',
+  name: 'PopularMovies',
   components: {
     MovieCard
   },
   data () {
     return {
-      upcomingMovies: [
+      popularMovies: [
         {
           id: 1,
           title: 'the crown',
@@ -66,22 +66,8 @@ export default {
     }
   }
 }
-
-/*
-components: {
-        PublisherGroup
-    },
-    props: {
-        searchText: {
-            type: String,
-            default: ""
-        },
-        groups: Array,
-        selectedGroupId: Number
-    },
-*/
 </script>
 
 <style lang="scss">
-  @import "~/assets/scss/styles/landing/upcoming-movies.scss";
+  @import '~/assets/scss/styles/landing/popular-movies.scss';
 </style>
