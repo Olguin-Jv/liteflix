@@ -93,3 +93,55 @@
     left: 11px;
   }
 }
+
+.btn-sm {
+  $timing: .5s;
+  width: 40px;
+  height: 40px;
+  border-radius: 100px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid white;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  &.play {
+    width: 40px;
+    height: 40px;
+    &::after {
+      background-image: $play-shape;
+      left: 53%;
+      width: 15px;
+      height: 18px;
+      background-size: contain;
+    }
+  }
+  &.add {
+    width: 32px;
+    height: 32px;
+    &::after {
+      width: 15px;
+      height: 15px;
+      background-image: $plus-shape;
+      background-size: cover;
+    }
+  }
+  &.like {
+    width: 32px;
+    height: 32px;
+    &::after {
+      width: 16px;
+      height: 16px;
+      background-image: $like-shape;
+      background-size: contain;
+    }
+  }
+}
