@@ -2,7 +2,7 @@
   section#upcoming-movies
     h2.container Próximamente
     transition-group(name="card").grid.container
-      movie-card(v-for="(movie, index) in upcomingMovies"
+      movie-card(v-for="(movie, index) in upcomingMovies.slice(0, 4)"
                 :key="movie.id"
                 :card-type="'small'"
                 :movie="movie")
@@ -10,6 +10,8 @@
 
 <script>
 import MovieCard from '~/components/landing/MovieCard.vue'
+import { getUpcomingMovies } from '~/api'
+
 export default {
   name: 'UpcomingMovies',
   components: {
@@ -17,69 +19,17 @@ export default {
   },
   data () {
     return {
-      upcomingMovies: [
-        {
-          id: 1,
-          title: 'the crown',
-          coincidence: '98%',
-          ageRate: '+16',
-          duration: '1h 30 min',
-          genre: 'suspenso',
-          plot: 'some lorem ipsum',
-          cover: 'https://picsum.photos/id/1073/300/200',
-          poster: 'http://mickstorm.com/saved/16376400705d744927936473.37824127.jpg'
-        },
-        {
-          id: 2,
-          title: 'house of cards',
-          coincidence: '98%',
-          ageRate: '+16',
-          duration: '1h 30 min',
-          genre: 'suspenso',
-          plot: 'some lorem ipsum',
-          cover: 'https://picsum.photos/id/1073/300/200',
-          poster: 'http://mickstorm.com/saved/16376400705d744927936473.37824127.jpg'
-        },
-        {
-          id: 3,
-          title: 'secret city',
-          coincidence: '98%',
-          ageRate: '+16',
-          duration: '1h 30 min',
-          genre: 'suspenso',
-          plot: 'some lorem ipsum',
-          cover: 'https://picsum.photos/id/1073/300/200',
-          poster: 'http://mickstorm.com/saved/16376400705d744927936473.37824127.jpg'
-        },
-        {
-          id: 4,
-          title: 'club de legénde',
-          coincidence: '98%',
-          ageRate: '+16',
-          duration: '1h 30 min',
-          genre: 'suspenso',
-          plot: 'some lorem ipsum',
-          cover: 'https://picsum.photos/id/1073/300/200',
-          poster: 'http://mickstorm.com/saved/16376400705d744927936473.37824127.jpg'
-        }
-      ]
+      upcomingMovies: []
     }
+  },
+  mounted () {
+    const self = this
+    getUpcomingMovies()
+      .then(function (data) {
+        self.upcomingMovies = data
+      })
   }
 }
-
-/*
-components: {
-        PublisherGroup
-    },
-    props: {
-        searchText: {
-            type: String,
-            default: ""
-        },
-        groups: Array,
-        selectedGroupId: Number
-    },
-*/
 </script>
 
 <style lang="scss">
