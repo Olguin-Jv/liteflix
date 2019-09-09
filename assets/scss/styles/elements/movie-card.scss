@@ -26,6 +26,16 @@
     }
     .wrapper {
       opacity: 1;
+      &::after,
+      &::before {
+        bottom: -30px;
+      }
+      &::before {
+        transform: rotate(45deg)
+      }
+      &::after {
+        transform: rotate(-45deg)
+      }
     }
   }
 
@@ -58,6 +68,21 @@
       .inner {
         display: flex;
       }
+    }
+  }
+
+  .wrapper {
+    &::after,
+    &::before {
+      content: '';
+      position: absolute;
+      width: 1px;
+      height: 30px;
+      background: white;
+      left: 50%;
+      bottom: 0px;
+      transform-origin: 50% 100%;
+      transition: bottom .5s, .5s transform .2s;
     }
   }
 
@@ -102,6 +127,9 @@
           &.add {
             display: none;
           }
+        }
+        h3 {
+          padding-right: 34px;
         }
         .inner {
           flex-wrap: wrap;

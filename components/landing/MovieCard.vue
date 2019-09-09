@@ -1,5 +1,5 @@
 <template lang="pug">
-  .movie-card(:class="cardType" :style="{'background-image': `url('https://image.tmdb.org/t/p/w342${movie.backdrop_path}')`}")
+  .movie-card(:class="cardType" :style="{'background-image': `url('https://image.tmdb.org/t/p/${bgSize + movie.backdrop_path}')`}")
     .wrapper
       .movie-card__info
 
@@ -34,7 +34,7 @@ export default {
   },
   data () {
     return {
-      bgImg: ''
+      bgSize: ''
     }
   },
   created () {
@@ -43,9 +43,9 @@ export default {
   methods: {
     getBgImage () {
       if (this.cardType === 'small') {
-        this.bgImg = this.movie.cover
+        this.bgSize = 'w342'
       } else {
-        this.bgImg = this.movie.poster
+        this.bgSize = 'w780'
       }
     },
     strLimit (limit, str) {
