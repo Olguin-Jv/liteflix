@@ -1,7 +1,18 @@
+// .nav-enter-active,
+// .nav-leave-active {
+//   transition: opacity 1s;
+// }
+// .nav-enter, .nav-leave-to /* .fade-leave-active below version 2.1.8 */ {
+//   opacity: 0;
+// }
+
 .nav-enter-active,
 .nav-leave-active {
-  transition: opacity 1s;
+  transition: all .5s ease;
 }
-.nav-enter, .nav-leave-to /* .fade-leave-active below version 2.1.8 */ {
+
+.nav-enter, .nav-leave-to
+/* .nav-fade-leave-active below version 2.1.8 */ {
+  transform: scale(.9) translateY(-10px);
   opacity: 0;
 }

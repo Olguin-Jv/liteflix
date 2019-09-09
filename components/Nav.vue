@@ -8,7 +8,7 @@
         .menu
           .left
             .navigation
-              nuxt-link(v-for='section in sections' :key="section.to" :to="section.to") {{section.name}}
+              nuxt-link(v-for='section in sections' :key="section.to" :to="section.to" :data-str="section.name") {{section.name}}
             .add-btn-wrapp
               button(@click="click").btn.add-animated
                 span agregar película
@@ -38,11 +38,11 @@ export default {
   data () {
     return {
       sections: [
-        { name: 'inicio', to: '/' },
-        { name: 'series', to: 'series' },
-        { name: 'películas', to: 'peliculas' },
-        { name: 'agregados recientemente', to: 'recientes' },
-        { name: 'mi lista', to: 'mis-listas' }
+        { name: 'Inicio', to: '/' },
+        { name: 'Series', to: 'series' },
+        { name: 'Películas', to: 'peliculas' },
+        { name: 'Agregados recientemente', to: 'recientes' },
+        { name: 'Mi lista', to: 'mis-listas' }
       ],
       users: [
         /* hardcoded user list */

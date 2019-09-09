@@ -1,25 +1,32 @@
 <template lang="pug">
-  section#upcoming-movies
-    h2.container Próximamente
-    transition-group(name="card").grid.container
-      movie-card(v-for="(movie, index) in upcomingMovies.slice(0, 4)"
-                :key="movie.id"
-                :card-type="'small'"
-                :movie="movie")
+  transition(name="upcoming-movies")
+    section#upcoming-movies(v-if="upcomingLoaded")
+      h2.container Próximamente
+      transition-group(name="card").grid.container
+        movie-card(v-for="(movie, index) in upcomingMovies.slice(0, 4)"
+                  :key="movie.id"
+                  :card-type="'small'"
+                  :movie="movie"
+                  :style="{'animation-delay': `${.3 * index}s`}")
+    section#upcoming-movies(v-else)
+      loader
 </template>
 
 <script>
 import MovieCard from '~/components/landing/MovieCard.vue'
+import Loader from '~/components/loader.vue'
 import { getUpcomingMovies } from '~/api'
 
 export default {
   name: 'UpcomingMovies',
   components: {
-    MovieCard
+    MovieCard,
+    Loader
   },
   data () {
     return {
-      upcomingMovies: []
+      upcomingMovies: [],
+      upcomingLoaded: false
     }
   },
   mounted () {
@@ -27,6 +34,9 @@ export default {
     getUpcomingMovies()
       .then(function (data) {
         self.upcomingMovies = data
+      })
+      .then(function () {
+        self.upcomingLoaded = true
       })
   }
 }

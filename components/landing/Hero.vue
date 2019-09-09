@@ -1,17 +1,19 @@
 <template lang="pug">
   transition(name="hero")
-    section#hero(v-if="heroLoaded" :style="{'background-image': `url('${baseUrl + movie.backdrop_path}')`}")
+    section#hero(v-if="heroLoaded")
+      .bg(:style="{'background-image': `url('${baseUrl + movie.backdrop_path}')`}")
       .container
         .inner
-          h3
+          h3(:style="{'animation-delay': `${timing * animationDelay + .5}s`}")
             | original de&nbsp;
             span liteflix
-          h1  {{ movie.original_title }}
+          h1
+            span(v-for="(letter, index) in movie.original_title" :style="{'animation-delay': `${timing * index}s`}") {{ letter }}
           .wrapp
-            button.btn.play reproducir
-            button.btn.add mi lista
-          h4  Ver temporada 1
-          p  {{ strLimit(210, movie.overview) }}
+            button.btn.play(:style="{'animation-delay': `${timing * animationDelay + .5}s`}") reproducir
+            button.btn.add(:style="{'animation-delay': `${timing * animationDelay + .5}s`}") mi lista
+          h4(:style="{'animation-delay': `${timing * animationDelay + .5}s`}")  Ver temporada 1
+          p(:style="{'animation-delay': `${timing * animationDelay + .5}s`}")  {{ strLimit(210, movie.overview) }}
     section#hero(v-else)
       loader
 </template>
@@ -30,7 +32,9 @@ export default {
       baseUrl: 'https://image.tmdb.org/t/p/original/',
       movie: {},
       nowPlaying: [],
-      heroLoaded: false
+      heroLoaded: false,
+      timing: 0.1,
+      animationDelay: 0
     }
   },
   mounted () {
@@ -39,6 +43,9 @@ export default {
       .then(function (data) {
         self.nowPlaying = data
         self.movie = data[0]
+      })
+      .then(function () {
+        self.animationDelay = self.movie.original_title.length
       })
       .then(function () {
         self.heroLoaded = true
