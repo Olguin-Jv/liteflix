@@ -1,23 +1,25 @@
 <template lang="pug">
   transition(name="hero")
-    section#hero(v-if="heroLoaded" :style="{'background-image': `url(${heroBg})`}")
+    section#hero(v-if="heroLoaded" :style="{'background-image': `url('${baseUrl + movie.backdrop_path}')`}")
       .container
         .inner
           h3
             | original de&nbsp;
             span liteflix
-          h1  {{ movie.title }}
+          h1  {{ movie.original_title }}
           .wrapp
             button.btn.play reproducir
             button.btn.add mi lista
           h4  Ver temporada 1
-          p  {{ strLimit(210, movie.plot) }}
+          p  {{ strLimit(210, movie.overview) }}
     section#hero(v-else)
       loader
 </template>
 
 <script>
 import Loader from '~/components/loader.vue'
+import { getNowPlaying } from '~/api'
+
 export default {
   name: 'Hero',
   components: {
@@ -25,16 +27,22 @@ export default {
   },
   data () {
     return {
-      heroBg: 'https://picsum.photos/1920/1080',
-      movie: {
-        title: 'Kids at school',
-        plot: 'Lorem ipsum dolor amet chicharrones dreamcatcher hammock bushwick hell of, ethical 3 wolf moon celiac neutra mumblecore four dollar toast. Slow-carb post-ironic kickstarter synth franzen.'
-      },
-      heroLoaded: true
+      baseUrl: 'https://image.tmdb.org/t/p/original/',
+      movie: {},
+      nowPlaying: [],
+      heroLoaded: false
     }
   },
-  created () {
-    /* add code here later */
+  mounted () {
+    const self = this
+    getNowPlaying()
+      .then(function (data) {
+        self.nowPlaying = data
+        self.movie = data[0]
+      })
+      .then(function () {
+        self.heroLoaded = true
+      })
   },
   methods: {
     strLimit (limit, str) {

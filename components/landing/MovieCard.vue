@@ -1,17 +1,22 @@
 <template lang="pug">
-  .movie-card(:class="cardType" :style="{'background-image': `url('${bgImg}')`}")
+  .movie-card(:class="cardType" :style="{'background-image': `url('https://image.tmdb.org/t/p/${bgSize + movie.backdrop_path}')`}")
     .wrapper
       .movie-card__info
-        h3 {{ movie.title }}
-        .inner
-          p {{ movie.coincidence }} coincidencia
-          p
-            span.badge {{ movie.ageRate }}
-          p &nbsp;{{ movie.duration }}
-        p {{ movie.genre }}
+
         button.btn-sm.play
         button.btn-sm.like
         button.btn-sm.add
+
+        h3
+          span(v-if="cardType === 'small'") {{ strLimit(19, movie.original_title) }}
+          span(v-else) {{ movie.original_title }}
+
+        .inner
+          p 98% coincidencia
+          p
+            span.badge +16
+          p &nbsp;1h 30 min
+        p suspenso
 </template>
 
 <script>
@@ -29,7 +34,7 @@ export default {
   },
   data () {
     return {
-      bgImg: ''
+      bgSize: ''
     }
   },
   created () {
@@ -38,10 +43,15 @@ export default {
   methods: {
     getBgImage () {
       if (this.cardType === 'small') {
-        this.bgImg = this.movie.cover
+        this.bgSize = 'w342'
       } else {
-        this.bgImg = this.movie.poster
+        this.bgSize = 'w780'
       }
+    },
+    strLimit (limit, str) {
+      let txt = ''
+      str.length > limit ? txt = `${str.slice(0, limit)}...` : txt = str
+      return txt
     }
   }
 }

@@ -135,6 +135,8 @@ nav {
             transition: opacity .2s, transform .2s;
             transition-timing-function: cubic-bezier(.47,.8,.69,1.29);
 
+            pointer-events: none;
+
             &::after {
               content: "";
               position: absolute;
@@ -154,6 +156,7 @@ nav {
             &.active {
               transform: scaleY(1);
               opacity: 1;
+              pointer-events: initial;
             }
             .user {
               width: 100%;

@@ -18,9 +18,6 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
   grid-gap: 30px;
-  .movie-card {
-    border: 1px solid black; //temporal
-  }
 }
 
 @media screen and (max-width: $bp-1) {
