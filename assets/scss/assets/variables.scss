@@ -12,10 +12,15 @@ $c-10: #003bff;
 $c-11: #0076ff;
 $c-12: #ce00ff;
 $c-13: #4a90e2;
+$c-14: #222222;
+
 
 /*ALPHA COLORS*/
+$a-0: rgba(146, 146, 146, 0.2);
 $a-1: rgba(0,0,0,.5);
 $a-2: rgba(0, 0, 0, 0.7);
+$a-3: rgba(0, 0, 0, 0.8);
+
 
 /*GRADIENTS*/
 $g-1: linear-gradient(to top, rgba(0, 0, 0, 0.14) 0%, rgba(0, 0, 0, 0.7) 100%);
@@ -28,6 +33,7 @@ $robotoSlab: 'Roboto Slab', serif;
 $play-shape: url("/img/icons/play-shape.svg");
 $plus-shape: url("/img/icons/plus-shape.svg");
 $like-shape: url("/img/icons/like-shape.svg");
+$line-shape: url("/img/icons/line-shape.svg");
 
 /*BREAKPOINTS*/
 $bp-1: 1168px;
