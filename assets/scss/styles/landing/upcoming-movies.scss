@@ -6,11 +6,35 @@
   margin-top: -110px;
   margin-bottom: 38px;
   z-index: 10;
+  min-height: 156px;
 
   h2 {
     font-size: 20px;
     font-weight: 700;
     text-transform: capitalize;
     margin-bottom: 18px;
+  }
+
+  .movie-card {
+    animation-name: cardUp;
+    animation-fill-mode: forwards;
+    animation-duration: .5s;
+    transform: translateY(50px);
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 0;
+
+    will-change: opacity, transform;
+  }
+}
+
+
+@keyframes cardUp {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
   }
 }

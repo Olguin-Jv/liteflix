@@ -1,5 +1,5 @@
 <template lang="pug">
-  .movie-card(:class="cardType" :style="{'background-image': `url('https://image.tmdb.org/t/p/${bgSize + movie.backdrop_path}')`}")
+  .movie-card(v-if="loaded" :class="cardType" :style="{'background-image': `url(${image.src})`}")
     .wrapper
       .movie-card__info
 
@@ -34,11 +34,14 @@ export default {
   },
   data () {
     return {
-      bgSize: ''
+      loaded: false,
+      bgSize: '',
+      image: new Image()
     }
   },
   created () {
     this.getBgImage()
+    this.loadImage(this.movie.backdrop_path)
   },
   methods: {
     getBgImage () {
@@ -47,6 +50,13 @@ export default {
       } else {
         this.bgSize = 'w780'
       }
+    },
+    loadImage (path) {
+      const self = this
+      this.image.onload = function () {
+        self.loaded = true
+      }
+      this.image.src = `https://image.tmdb.org/t/p/${this.bgSize + path}`
     },
     strLimit (limit, str) {
       let txt = ''
