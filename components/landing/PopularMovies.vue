@@ -2,7 +2,7 @@
   section#popular-movies.container
     h2 Populares de liteflix
     transition-group(name="card").grid
-      movie-card(v-for="(movie, index) in popularMovies.slice(0, 4)"
+      movie-card(v-for="(movie, index) in popularMovies"
                 :key="movie.id"
                 :card-type="'big'"
                 :movie="movie")

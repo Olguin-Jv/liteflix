@@ -1,7 +1,7 @@
 <template lang="pug">
   transition(name="hero")
     section#hero(v-if="heroLoaded")
-      .bg(:style="{'background-image': `url('${baseUrl + movie.backdrop_path}')`}")
+      .bg(:style="{'background-image': `url('${baseUrl + bgSize + movie.backdrop_path}')`}")
       .container
         .inner
           h3(:style="{'animation-delay': `${timing * animationDelay + .5}s`}")
@@ -29,9 +29,11 @@ export default {
   },
   data () {
     return {
-      baseUrl: 'https://image.tmdb.org/t/p/original/',
       movie: {},
-      nowPlaying: [],
+      bgImage: '',
+      baseUrl: 'https://image.tmdb.org/t/p/',
+      bgSize: '',
+      bgPath: '',
       heroLoaded: false,
       timing: 0.1,
       animationDelay: 0
@@ -39,16 +41,18 @@ export default {
   },
   mounted () {
     const self = this
+    this.bgSize = this.calcImgsize()
     getNowPlaying()
       .then(function (data) {
-        self.nowPlaying = data
-        self.movie = data[0]
+        self.movie = data
       })
       .then(function () {
         self.animationDelay = self.movie.original_title.length
-      })
-      .then(function () {
-        self.heroLoaded = true
+        self.bgImage = new Image()
+        self.bgImage.onload = () => {
+          self.heroLoaded = true
+        }
+        self.bgImage.src = self.baseUrl + self.bgSize + self.movie.backdrop_path
       })
   },
   methods: {
@@ -56,6 +60,16 @@ export default {
       let txt = ''
       str.length > limit ? txt = `${str.slice(0, limit)}...` : txt = str
       return txt
+    },
+    calcImgsize () {
+      const screenWidth = window.innerWidth
+      if (screenWidth > 1366) {
+        return 'original'
+      } else if (screenWidth > 1024) {
+        return 'w1280'
+      } else {
+        return 'w780'
+      }
     }
   }
 }

@@ -3,13 +3,12 @@
     section#upcoming-movies(v-if="upcomingLoaded")
       h2.container Próximamente
       transition-group(name="card").grid.container
-        movie-card(v-for="(movie, index) in upcomingMovies.slice(0, 4)"
+        movie-card(v-for="(movie, index) in upcomingMovies"
                   :key="movie.id"
                   :card-type="'small'"
-                  :movie="movie"
-                  :style="{'animation-delay': `${.3 * index}s`}")
+                  :movie="movie")
     section#upcoming-movies(v-else)
-      loader
+      //- loader
 </template>
 
 <script>

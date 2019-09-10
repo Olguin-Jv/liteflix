@@ -51,6 +51,7 @@ nav {
               }
             }
 
+            /*custom margin*/
             @include mg-right(1, 17);
             @include mg-right(2, 17);
             @include mg-right(3, 16);
@@ -124,6 +125,7 @@ nav {
       line-height: 12px;
       transition: all .3s;
       color: $c-7;
+      white-space: nowrap;
 
       &.nuxt-link-active {
         font-weight: 700;
