@@ -148,14 +148,14 @@
 
 /*BURGER BUTTON*/
 .burger-btn {
-  position: absolute;
-  left: 11px;
-  top: 4px;
+  position: fixed;
+  left: 26px;
+  top: 17px;
   transform: translateX(-50%);
   width: 22px;
   height: 13px;
   padding: 0;
-
+  z-index: 110;
   div {
 
     &::before,

@@ -7,7 +7,7 @@ nav {
   left: 0;
   right: 0;
   padding-top: 22px;
-  z-index: 100;
+  z-index: 50;
   background-color: transparent;
   transition: all 0.5s;
   &.dark-bg {
@@ -168,7 +168,6 @@ nav {
             position: absolute;
             right: 1px;
             top: 41px;
-
             padding: 11px 10px;
 
             width: 130px;
@@ -234,13 +233,28 @@ nav {
 }
 
 /*mobile version*/
-nav {
-  .container {
-    .mobile-dropdown {
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.5s;
-    }
+
+.mobile-dropdown {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s;
+}
+
+.bg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 45;
+  pointer-events: none;
+  background-color: transparent;
+  opacity: 0;
+  transition: opacity 0.3s;
+  &.active {
+    pointer-events: initial;
+    opacity: 1;
   }
 }
 
@@ -252,7 +266,7 @@ nav {
   height: 100%;
   background: $c-1;
   // background: lightblue;
-  z-index: 20;
+  z-index: 60;
   transform: skewX(-20deg);
   transition: transform 1s, left 1s, opacity 0.5s;
 
@@ -273,11 +287,12 @@ nav {
     top: 13px;
   }
   .user {
+    background-color: #222222;
     p {
       color: $c-7;
     }
-    &:hover {
-      background-color:#222222;
+    img {
+      filter: none;
     }
   }
 
@@ -331,27 +346,29 @@ nav {
       a.logo {
         left: 50%;
         transform: translateX(-50%);
-        transition: 0.5s left 0.5s, 0.5s transform 0.5s;
+        transition: left .5s .5s, transform .5s 0.5s;
+        &.active {
+          opacity: 0;
+        }
       }
       .menu {
         opacity: 0;
         pointer-events: none;
-        transition: opacity 0s;
+        transition: opacity .3s;
       }
     }
   }
 
   /*MOBILE*/
-  nav {
-    .container {
-      .mobile-dropdown {
-        opacity: 1;
-        pointer-events: initial;
-      }
-    }
+  .mobile-dropdown {
+    opacity: 1;
+    pointer-events: initial;
   }
   .dropdown-menu {
     opacity: 1;
     pointer-events: initial;
+  }
+  .bg {
+    background: $a-4;
   }
 }

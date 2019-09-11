@@ -3,11 +3,10 @@
     nav(:class="{'dark-bg': navBg}")
       transition(name="nav")
         .container(v-if="isLoaded")
-          a.logo(href='#')
+          a.logo(href='#' :class="{active: menuDropdown}")
             img(src='img/liteflix-logo.svg' alt="liteflix logo")
 
           //- DESKTOP VERSION -//
-
           .menu
             .left
               .navigation
@@ -15,12 +14,10 @@
               .add-btn-wrapp
                 button(@click="click").btn.add-animated
                   span agregar película
-
             .right
               a Niños
               .bell-wrapp(:class="{active: bell}")
                 .inner
-
               .menu-dropdown
                 .inner(@click="toggleDropdown")
                   .user-pic
@@ -35,15 +32,14 @@
                     nuxt-link(to="/" @click.native="toggleDropdown") Log Out
 
           //- MOBILE VERSION -//
-          .mobile-dropdown
-            button.burger-btn(@click="toggleDropdown")
-              div(:class="{active: menuDropdown}")
+    .mobile-dropdown
+      button.burger-btn(@click="toggleDropdown")
+        div(:class="{active: menuDropdown}")
     .dropdown-menu(:class="{active: menuDropdown}")
       a.logo(href='#')
         img(src='img/liteflix-logo.svg' alt="liteflix logo")
-
       .user(@click="toggleDropdown")
-        img(src='img/profile-placeholder.svg' alt='profile img')
+        img(src='img/profile-placeholder-2.svg' alt='profile img')
         p {{ users[0].name }}
       .wrapper.top
         nuxt-link(to="change-user" @click.native="toggleDropdown") cambia de usuario
@@ -58,6 +54,8 @@
         nuxt-link(to="change-user" @click.native="toggleDropdown") películas
         nuxt-link(to="change-user" @click.native="toggleDropdown") mi lista
         nuxt-link(to="change-user" @click.native="toggleDropdown") niños
+
+    .bg(:class="{active: menuDropdown}" @click="toggleDropdown")
 
 </template>
 
@@ -76,9 +74,9 @@ export default {
       ],
       users: [
         /* hardcoded user list */
-        { name: 'Ernesto Garmendia', img: 'img/profile-placeholder.svg' },
-        { name: 'User 02', img: 'img/profile-placeholder.svg' },
-        { name: 'User 03', img: 'img/profile-placeholder.svg' }
+        { name: 'Ernesto Garmendia', img: 'img/profile-placeholder-2.svg' },
+        { name: 'User 02', img: 'img/profile-placeholder-2.svg' },
+        { name: 'User 03', img: 'img/profile-placeholder-2.svg' }
       ],
       bell: false,
       menuDropdown: false,
