@@ -337,7 +337,7 @@ nav {
 /*mobile version*/
 
 /*mobile - version*/
-@media screen and (max-width: 950px) {
+@media screen and (max-width: $bp-3) {
   /*DESKTOP*/
   nav {
     padding-top: 13px;

@@ -5,31 +5,35 @@
   width: 100%;
   height: calc(100vh - 91px);
   min-height: 768px;
-  
-  .bg {
+  overflow: hidden;
+  .bg-wrapper {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     width: 100%;
     height: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    animation-name: letterIn;
-    animation-fill-mode: forwards;
-    animation-duration: 2s;
-    z-index: 1;
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0%;
-      left: 0%;
-      right: 0%;
+    .bg {
       width: 100%;
       height: 100%;
-      background-image: $g-1;
-      z-index: 2;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      animation-name: letterIn;
+      animation-fill-mode: forwards;
+      animation-duration: 2s;
+      z-index: 1;
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        right: 0%;
+        width: 100%;
+        height: 100%;
+        background-image: $g-1;
+        z-index: 2;
+      }
     }
   }
 
@@ -41,6 +45,9 @@
     .inner {
       width: 100%;
       max-width: 537px;
+      &.is-long {
+        max-width: 80%;
+      }
       h3 {
         font-size: 24px;
         text-transform: uppercase;
@@ -56,6 +63,8 @@
         font-weight: 700;
         line-height: 90px;
         margin-bottom: 18px;
+        transition: all 0.7s;
+
         span {
           animation-name: letterIn;
           animation-fill-mode: forwards;
@@ -86,7 +95,7 @@
         opacity: 0;
         animation-name: contentEnter;
         animation-fill-mode: forwards;
-        animation-duration: .5s;
+        animation-duration: 0.5s;
         will-change: opacity, transform;
       }
     }
@@ -100,7 +109,7 @@
   }
   100% {
     opacity: 1;
-    filter: blur(0px)
+    filter: blur(0px);
   }
 }
 
@@ -112,5 +121,24 @@
   100% {
     opacity: 1;
     transform: translateX(0px);
+  }
+}
+
+@media screen and (max-width: $bp-1) {
+  @import "../../assets/variables.scss";
+
+  #hero {
+    min-height: 650px;
+    .container {
+      .inner {
+        h3 {
+        }
+        h1 {
+          font-size: 80px;
+          line-height: 80px;
+          transition: all 0.7s;
+        }
+      }
+    }
   }
 }
