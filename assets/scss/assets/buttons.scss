@@ -145,3 +145,70 @@
     }
   }
 }
+
+/*BURGER BUTTON*/
+.burger-btn {
+  position: fixed;
+  left: 26px;
+  top: 17px;
+  transform: translateX(-50%);
+  width: 22px;
+  height: 13px;
+  padding: 0;
+  z-index: 110;
+  div {
+
+    &::before,
+    &::after {
+      content: '';
+    }
+    &,
+    &::before,
+    &::after {
+      position: absolute;
+      width: 22px;
+      height: 10px;
+      background-image: $line-shape;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      transform-origin: 50% 50%;
+      left: 50%;
+      transform: translate(-50%, 0%) rotate(0);
+      transition-timing-function: linear;
+      transition: top .3s, width .3s, transform .3s;
+
+    }
+
+    &::before {
+      top: -6px;
+    }
+    & {
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    &::after {
+      top: 6px;
+    }
+
+    &.active {
+      &,
+      &::before,
+      &::after {
+        transition: top .3s, width .3s .3s, transform .3s .3s;
+      }
+      &::before {
+        top: 0px;
+        transform: translate(-50%, 0%) rotate(45deg);
+        opacity: 1;
+      }
+      & {
+        width: 0;
+      }
+      &::after {
+        top: 0px;
+        transform: translate(-50%, 0%) rotate(-45deg);
+      }
+    }
+  }
+}
