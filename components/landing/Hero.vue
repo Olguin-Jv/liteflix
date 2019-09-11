@@ -1,8 +1,8 @@
 <template lang="pug">
   transition(name="hero")
     section#hero(v-if="heroLoaded")
-      .bg-wrapper(:style="{'filter': `blur(${blurAmount}px)`, 'transform': `translateY(${bgPosition}px)`}")
-        .bg(:style="{'background-image': `url('${baseUrl + bgSize + movie.backdrop_path}')`}")
+      .bg-wrapper(:style="{'filter': `blur(${blurAmount}px)`}")
+        .bg(:style="{'background-image': `url('${baseUrl + bgSize + movie.backdrop_path}')`, 'transform': `translateY(${bgPosition}px)`}")
       .container
         .inner(:class="{'is-long': isLong(movie.original_title, 18)}")
           h3(:style="{'animation-delay': `${timing * animationDelay + .5}s`}")
@@ -11,8 +11,10 @@
           h1
             span(v-for="(letter, index) in movie.original_title" :style="{'animation-delay': `${timing * index}s`}") {{ letter }}
           .wrapp
-            button.btn.play(:style="{'animation-delay': `${timing * animationDelay + .5}s`}") reproducir
-            button.btn.add(:style="{'animation-delay': `${timing * animationDelay + .5}s`}") mi lista
+            button.btn.play(:style="{'animation-delay': `${timing * animationDelay + .5}s`}")
+              span reproducir
+            button.btn.add(:style="{'animation-delay': `${timing * animationDelay + .5}s`}")
+              span mi lista
           h4(:style="{'animation-delay': `${timing * animationDelay + .5}s`}")  Ver temporada 1
           p(:style="{'animation-delay': `${timing * animationDelay + .5}s`}")  {{ strLimit(210, movie.overview) }}
     section#hero(v-else)
@@ -61,16 +63,6 @@ export default {
       self.bgPosition = Math.floor(window.scrollY / 2.25)
       self.blurAmount = Math.floor(window.scrollY / 100)
     })
-    /**
-     *
-      mounted () {
-        this.handleNavScroll()
-        this.isLoaded = true
-      },
-      beforeDestroy () {
-        window.removeEventListener('scroll', this.handleNavScroll)
-      },
-    */
   },
   methods: {
     strLimit (limit, str) {
