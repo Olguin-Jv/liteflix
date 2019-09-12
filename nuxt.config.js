@@ -29,6 +29,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~/plugins/event-bus'
   ],
   /*
   ** Nuxt.js dev-modules
