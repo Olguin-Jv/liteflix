@@ -13,7 +13,7 @@
 
 <script>
 import MovieCard from '~/components/landing/MovieCard.vue'
-import Loader from '~/components/loader.vue'
+import Loader from '~/components/Loader.vue'
 import { getUpcomingMovies } from '~/api'
 
 export default {

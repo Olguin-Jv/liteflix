@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import Loader from '~/components/loader.vue'
+import Loader from '~/components/Loader.vue'
 import { getNowPlaying } from '~/api'
 
 export default {
