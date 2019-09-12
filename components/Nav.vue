@@ -58,7 +58,6 @@
           span agregar película
         nuxt-link(to="change-user" @click.native="toggleDropdown") log out
     .bg(:class="{active: menuDropdown}" @click="toggleDropdown")
-
 </template>
 
 <script>
@@ -110,5 +109,14 @@ export default {
 </script>
 
 <style lang='scss'>
-@import '~/assets/scss/styles/nav/desktop.scss'
+@import '~/assets/scss/styles/nav/desktop.scss';
+.modal__modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width:100%;
+  height: 100%;
+  background-color: black;
+  z-index: 200;
+}
 </style>
