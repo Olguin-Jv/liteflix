@@ -1,9 +1,8 @@
 <template lang='pug'>
   .body
-    template
-      hero
-      upcoming-movies
-      popular-movies
+    hero
+    upcoming-movies
+    popular-movies
 </template>
 
 <script>

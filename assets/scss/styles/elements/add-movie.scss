@@ -1,0 +1,62 @@
+@import "../../assets/variables.scss";
+
+.modal__add-movies {
+  position: fixed;
+  z-index: 200;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .modal__bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: $a-3;
+  }
+  .modal__container {
+    width: calc(100% - 30px);
+    max-width: 730px;
+    min-height: 355px;
+    padding: 29px 35px 26px 35px;
+    background-color: $c-7;
+    border-radius: 10px;
+    z-index: 201;
+
+    .drop-area {
+      width: 100%;
+      height: 101px;
+      border: 1px dashed $c-3;
+      border-radius: 10px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      a {
+        font-size: 16px;
+        color: $c-3;
+        span {
+          color: $c-11;
+          font-weight: 700;
+        }
+      }
+    }
+
+    .input-area {
+      input:focus ~ .drop {
+        width: 10px;
+        height: 10px;
+        border: 5px solid red;
+      }
+    }
+  }
+}
+
+input {
+  border: none;
+  background: none;
+  outline: none;
+}

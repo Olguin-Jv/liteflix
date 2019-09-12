@@ -16,3 +16,10 @@
   transform: scale(.9) translateY(-10px);
   opacity: 0;
 }
+
+.add-movies-enter-active, .add-movies-leave-active {
+  transition: opacity .5s;
+}
+.add-movies-enter, .add-movies-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
