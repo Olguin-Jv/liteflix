@@ -1,8 +1,6 @@
 <template lang='pug'>
   .body
-    template(v-if="!loadedData")
-      p loading data...
-    template(v-else)
+    template
       hero
       upcoming-movies
       popular-movies
@@ -17,11 +15,6 @@ export default {
     Hero,
     UpcomingMovies,
     PopularMovies
-  },
-  data () {
-    return {
-      loadedData: true
-    }
   }
 }
 </script>
