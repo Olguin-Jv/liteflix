@@ -309,6 +309,7 @@ nav {
       }
     }
     &.bot {
+      margin-bottom: 16px;
       a {
         display: block;
         font-size: 14px;
@@ -326,8 +327,18 @@ nav {
           margin-right: 4px;
         }
       }
+      a:last-child {
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: capitalize;
+      }
+      .btn {
+        margin-top: 25px;
+        margin-bottom: 30px;
+      }
     }
   }
+  
 
   &.active {
     left: 0;
@@ -337,7 +348,7 @@ nav {
 /*mobile version*/
 
 /*mobile - version*/
-@media screen and (max-width: 950px) {
+@media screen and (max-width: $bp-3) {
   /*DESKTOP*/
   nav {
     padding-top: 13px;

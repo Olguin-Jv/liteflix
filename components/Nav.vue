@@ -54,7 +54,9 @@
         nuxt-link(to="change-user" @click.native="toggleDropdown") películas
         nuxt-link(to="change-user" @click.native="toggleDropdown") mi lista
         nuxt-link(to="change-user" @click.native="toggleDropdown") niños
-
+        button(@click="click").btn.add-animated.active
+          span agregar película
+        nuxt-link(to="change-user" @click.native="toggleDropdown") log out
     .bg(:class="{active: menuDropdown}" @click="toggleDropdown")
 
 </template>

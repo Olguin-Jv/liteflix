@@ -1,17 +1,20 @@
 <template lang="pug">
   transition(name="hero")
     section#hero(v-if="heroLoaded")
-      .bg(:style="{'background-image': `url('${baseUrl + bgSize + movie.backdrop_path}')`}")
+      .bg-wrapper(:style="{'filter': `blur(${blurAmount}px)`}")
+        .bg(:style="{'background-image': `url('${baseUrl + bgSize + movie.backdrop_path}')`, 'transform': `translateY(${bgPosition}px)`}")
       .container
-        .inner
+        .inner(:class="{'is-long': isLong(movie.original_title, 18)}")
           h3(:style="{'animation-delay': `${timing * animationDelay + .5}s`}")
             | original de&nbsp;
             span liteflix
           h1
             span(v-for="(letter, index) in movie.original_title" :style="{'animation-delay': `${timing * index}s`}") {{ letter }}
           .wrapp
-            button.btn.play(:style="{'animation-delay': `${timing * animationDelay + .5}s`}") reproducir
-            button.btn.add(:style="{'animation-delay': `${timing * animationDelay + .5}s`}") mi lista
+            button.btn.play(:style="{'animation-delay': `${timing * animationDelay + .5}s`}")
+              span reproducir
+            button.btn.add(:style="{'animation-delay': `${timing * animationDelay + .5}s`}")
+              span mi lista
           h4(:style="{'animation-delay': `${timing * animationDelay + .5}s`}")  Ver temporada 1
           p(:style="{'animation-delay': `${timing * animationDelay + .5}s`}")  {{ strLimit(210, movie.overview) }}
     section#hero(v-else)
@@ -36,7 +39,9 @@ export default {
       bgPath: '',
       heroLoaded: false,
       timing: 0.1,
-      animationDelay: 0
+      animationDelay: 0,
+      bgPosition: 0,
+      blurAmount: 0
     }
   },
   mounted () {
@@ -54,6 +59,10 @@ export default {
         }
         self.bgImage.src = self.baseUrl + self.bgSize + self.movie.backdrop_path
       })
+    window.addEventListener('scroll', function () {
+      self.bgPosition = Math.floor(window.scrollY / 2.25)
+      self.blurAmount = Math.floor(window.scrollY / 100)
+    })
   },
   methods: {
     strLimit (limit, str) {
@@ -70,6 +79,9 @@ export default {
       } else {
         return 'w780'
       }
+    },
+    isLong (str, limit) {
+      return str > limit
     }
   }
 }

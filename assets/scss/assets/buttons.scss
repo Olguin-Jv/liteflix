@@ -1,7 +1,7 @@
 @import "./variables.scss";
 
 .btn {
-  $timing: .5s;
+  $timing: 0.5s;
   height: 40px;
   border-radius: 100px;
   position: relative;
@@ -18,9 +18,8 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-
   }
-  
+
   /*ADD BUTTON || ANIMATED*/
   &.add-animated {
     width: 40px;
@@ -34,7 +33,7 @@
     &::first-letter {
       text-transform: uppercase;
     }
-    
+
     &::after {
       top: 50%;
       left: 12px;
@@ -43,14 +42,14 @@
       height: 15px;
       background-image: $plus-shape;
     }
-    
+
     span {
       position: relative;
       opacity: 0;
       filter: blur(5px);
       will-change: filter;
     }
-    
+
     &:hover {
       width: 183px;
       padding-left: 31px;
@@ -63,7 +62,15 @@
         transform: translateY(-50%) rotate(270deg);
       }
     }
-
+    &.active {
+      width: 100%;
+      font-size: 14px;
+      span {
+        filter: unset;
+        opacity: 1;
+        left:  -6px;
+      }
+    }
   }
 
   &.play,
@@ -95,7 +102,7 @@
 }
 
 .btn-sm {
-  $timing: .5s;
+  $timing: 0.5s;
   width: 40px;
   height: 40px;
   border-radius: 100px;
@@ -112,7 +119,7 @@
     background-position: center;
     background-repeat: no-repeat;
   }
-  
+
   &.play {
     width: 40px;
     height: 40px;
@@ -157,10 +164,9 @@
   padding: 0;
   z-index: 110;
   div {
-
     &::before,
     &::after {
-      content: '';
+      content: "";
     }
     &,
     &::before,
@@ -176,8 +182,7 @@
       left: 50%;
       transform: translate(-50%, 0%) rotate(0);
       transition-timing-function: linear;
-      transition: top .3s, width .3s, transform .3s;
-
+      transition: top 0.3s, width 0.3s, transform 0.3s;
     }
 
     &::before {
@@ -195,7 +200,7 @@
       &,
       &::before,
       &::after {
-        transition: top .3s, width .3s .3s, transform .3s .3s;
+        transition: top 0.3s, width 0.3s 0.3s, transform 0.3s 0.3s;
       }
       &::before {
         top: 0px;

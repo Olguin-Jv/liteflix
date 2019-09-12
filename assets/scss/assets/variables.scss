@@ -22,10 +22,9 @@ $a-2: rgba(0, 0, 0, 0.7);
 $a-3: rgba(0, 0, 0, 0.8);
 $a-4: rgba(0, 0, 0, .6);
 
-
 /*GRADIENTS*/
-$g-1: linear-gradient(to top, rgba(0, 0, 0, 0.14) 0%, rgba(0, 0, 0, 0.7) 100%);
-
+$g-1: linear-gradient(to top, rgba(0, 0, 0, 0.14) 0%, rgba(0, 0, 0, .9) 95%);
+$g-2: linear-gradient(to bottom, rgba(0, 0, 0, 0) 5%, #000000 80%);
 /*FONTS: */
 $montserrat: 'Montserrat', sans-serif;
 $robotoSlab: 'Roboto Slab', serif;
@@ -37,4 +36,6 @@ $like-shape: url("/img/icons/like-shape.svg");
 $line-shape: url("/img/icons/line-shape.svg");
 
 /*BREAKPOINTS*/
-$bp-1: 1168px;
+$bp-1: 1366px;
+$bp-2: 1168px;
+$bp-3: 950px;
