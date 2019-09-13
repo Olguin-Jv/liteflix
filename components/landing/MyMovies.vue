@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div()
     div(v-for='(movie, index) in myLocalMovies.list' :key="index") {{ movie.title }}
 
 </template>
@@ -25,11 +25,14 @@ export default {
   methods: {
     checkLocalStorage () {
       if (localStorage.getItem('myLocalMovies') === null) {
-        const newLocalMovies = { list: [] }
-        this.myLocalMovies = newLocalMovies
-        localStorage.setItem('myLocalMovies', JSON.stringify(newLocalMovies))
+        localStorage.setItem('myLocalMovies', JSON.stringify(this.myLocalMovies))
       } else {
-        // this.myLocalMovies = JSON.parse(localStorage.getItem('myLocalMovies'))
+        const self = this
+        const storedMovies = JSON.parse(localStorage.getItem('myLocalMovies'))
+        storedMovies.list.forEach((movie) => {
+          self.myLocalMovies.list.push(JSON.parse(movie))
+        })
+        console.log(storedMovies)
       }
     },
     toLocalStorage (movie) {
