@@ -28,7 +28,7 @@
             .progress-bar(v-if="!loadError")
               .inner(:style="{'width': `${loadingProgress}%`}")
             .progress-bar(v-else)
-              .inner(class="load-error")
+              .inner(class="error")
 
             template(v-if="!loadError")
               button.cancel(@click="loadError = true") cancelar
