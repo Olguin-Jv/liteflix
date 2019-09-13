@@ -5,13 +5,14 @@
     transition(name="modal-add")
       .modal__container(v-if="modalStatus === 'addMovie'")
 
-        template(v-if="isLoading")
+        template(v-if="!isLoading")
           .drop-area
             a
               span Agregar archivo&nbsp;
               | o arrastrarlo y soltarlo aquí
 
-        template(v-if="!isLoading")
+        //- LOAD AREA
+        template(v-if="isLoading")
           .load-area
 
             template(v-if="!loadError")
@@ -24,14 +25,17 @@
                 span Error!&nbsp;
                 | No se pudo cargar la Película
 
-            .progress-bar
-              .inner(:class="{error: loadError}" :style="{'width': `${loadingProgress}%`}")
+            .progress-bar(v-if="!loadError")
+              .inner(:style="{'width': `${loadingProgress}%`}")
+            .progress-bar(v-else)
+              .inner(class="load-error")
 
             template(v-if="!loadError")
-              button.cancel cancelar
+              button.cancel(@click="loadError = true") cancelar
             template(v-else)
-              button.cancel cancelar
+              button.cancel(@click="uploadMovie") reintentar
 
+        //- INPUT AREA
         .input-area(:class="{disable: isLoading}")
           .wrapp
             p nombre de la pelicula
@@ -86,18 +90,20 @@ export default {
     },
     uploadMovie () {
       const self = this
+      this.isLoading = true
+      this.loadError = false
+      this.loadingProgress = 0
       for (let i = 0; i <= 100; i++) {
         setTimeout(() => {
           self.loadingProgress = i
-          if (this.loadingProgress === 100) {
-            console.log('finish')
+          if (this.loadingProgress === 100 && !this.loadError) {
             this.loadingProgress = 0
             this.data.title = this.movieName
             this.data.genre = this.movieGenre
             this.$bus.$emit('add-movie', JSON.stringify(this.data))
             this.modalStatus = 'success'
           }
-        }, i * 200)
+        }, i * 50)
       }
     },
     handleSelect (e) {

@@ -1,6 +1,8 @@
 <template lang="pug">
-  section
-    p(v-for='(movie, index) in myLocalMovies.list' :key="index") {{ movie.title }}, {{ movie.genre }}
+  section#my-movies
+    h2 Mis películas
+          p(v-for='(movie, index) in myLocalMovies.list' :key="index")
+            | Título: {{ movie.title }}, Género: {{ movie.genre }}
 </template>
 
 <script>
@@ -43,7 +45,5 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-button {
-  color: red;
-}
+  @import "~/assets/scss/styles/landing/my-movies.scss";
 </style>
