@@ -9,14 +9,23 @@
       .input-area
         input
         .drop
+          button(@click="addMovie") add movie
 </template>
 
 <script>
 export default {
   name: 'AddMovies',
+  data () {
+    return {
+      data: { title: 'batman', caaategorie: 'berretas' }
+    }
+  },
   methods: {
     toggleAddMovies () {
       this.$bus.$emit('toggle-add-movie')
+    },
+    addMovie () {
+      this.$bus.$emit('add-movie', JSON.stringify(this.data))
     }
   }
 }
