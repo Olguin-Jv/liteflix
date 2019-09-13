@@ -4,11 +4,35 @@
 
     transition(name="modal-add")
       .modal__container(v-if="modalStatus === 'addMovie'")
-        .drop-area
-          a
-            span Agregar archivo&nbsp;
-            | o arrastrarlo y soltarlo aquí
-        .input-area
+
+        template(v-if="isLoading")
+          .drop-area
+            a
+              span Agregar archivo&nbsp;
+              | o arrastrarlo y soltarlo aquí
+
+        template(v-if="!isLoading")
+          .load-area
+
+            template(v-if="!loadError")
+              p(v-if="loadingProgress < 100") Cargando {{ loadingProgress }}%
+              p(v-if="loadingProgress === 100")
+                span Cargado {{ loadingProgress }}%
+
+            template(v-else)
+              p
+                span Error!&nbsp;
+                | No se pudo cargar la Película
+
+            .progress-bar
+              .inner(:class="{error: loadError}" :style="{'width': `${loadingProgress}%`}")
+
+            template(v-if="!loadError")
+              button.cancel cancelar
+            template(v-else)
+              button.cancel cancelar
+
+        .input-area(:class="{disable: isLoading}")
           .wrapp
             p nombre de la pelicula
             input(v-model="movieName")
@@ -19,7 +43,8 @@
               .select__dropdown(:class="{'active': selectActive}")
                 .inner
                   .option(v-for="(categorie, index) in categories" :key="index" @click="movieGenre = categorie") {{ categorie }}
-        button.btn-upload(@click="uploadMovie") Subir Película
+
+        button.btn-upload(:class="{disable: isLoading}" @click="uploadMovie") Subir Película
 
     transition(name="modal-add")
       .modal__container.success(v-if="modalStatus === 'success'")
@@ -43,21 +68,37 @@ export default {
       movieGenre: 'Selecciona categoría',
       categories: ['accion', 'animacion', 'aventuras', 'ciencia ficcion', 'comedia', 'documentales', 'drama', 'épicas', 'terror'],
       selectActive: false,
-      modalStatus: 'addMovie'
+      modalStatus: 'addMovie',
+      isLoading: false,
+      loadingProgress: 0,
+      loadError: false
     }
   },
   created () {
     this.modalStatus = 'addMovie'
+    this.isLoading = false
+    this.loadingProgress = 0
+    this.loadError = false
   },
   methods: {
     toggleAddMovies () {
       this.$bus.$emit('toggle-add-movie')
     },
     uploadMovie () {
-      this.data.title = this.movieName
-      this.data.genre = this.movieGenre
-      this.$bus.$emit('add-movie', JSON.stringify(this.data))
-      this.modalStatus = 'success'
+      const self = this
+      for (let i = 0; i <= 100; i++) {
+        setTimeout(() => {
+          self.loadingProgress = i
+          if (this.loadingProgress === 100) {
+            console.log('finish')
+            this.loadingProgress = 0
+            this.data.title = this.movieName
+            this.data.genre = this.movieGenre
+            this.$bus.$emit('add-movie', JSON.stringify(this.data))
+            this.modalStatus = 'success'
+          }
+        }, i * 200)
+      }
     },
     handleSelect (e) {
       this.movieGenre = e
