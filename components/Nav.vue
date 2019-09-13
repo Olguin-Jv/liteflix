@@ -16,7 +16,7 @@
                   span agregar película
             .right
               a Niños
-              .bell-wrapp(:class="{active: bell}")
+              .bell-wrapp(:class="{active: bell}" @click="bellClick")
                 .inner
               .menu-dropdown
                 .inner(@click="toggleDropdown")
@@ -48,7 +48,7 @@
         nuxt-link(to="help" @click.native="toggleDropdown") ayuda
       .wrapper.bot
         nuxt-link(to="change-user" @click.native="toggleDropdown")
-          .bell-wrapp(:class="{active: bell}")
+          .bell-wrapp(:class="{active: bell}" @click="bellClick")
             .inner
           span novedades
         nuxt-link(to="change-user" @click.native="toggleDropdown") series
@@ -96,7 +96,7 @@ export default {
     window.removeEventListener('scroll', this.handleNavScroll)
   },
   methods: {
-    click () {
+    bellClick () {
       this.bell = !this.bell
     },
     toggleDropdown () {

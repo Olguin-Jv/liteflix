@@ -1,7 +1,6 @@
 <template lang="pug">
-  div()
-    div(v-for='(movie, index) in myLocalMovies.list' :key="index") {{ movie.title }}
-
+  section
+    p(v-for='(movie, index) in myLocalMovies.list' :key="index") {{ movie.title }}, {{ movie.genre }}
 </template>
 
 <script>
@@ -9,7 +8,8 @@ export default {
   name: 'MyMovies',
   data () {
     return {
-      myLocalMovies: { list: [] }
+      myLocalMovies: { list: [] },
+      categories: ['accion', 'animacion', 'aventuras', 'ciencia ficcion', 'comedia', 'documentales', 'drama', 'épicas', 'terror']
     }
   },
   created () {
@@ -32,7 +32,6 @@ export default {
         storedMovies.list.forEach((movie) => {
           self.myLocalMovies.list.push(JSON.parse(movie))
         })
-        console.log(storedMovies)
       }
     },
     toLocalStorage (movie) {

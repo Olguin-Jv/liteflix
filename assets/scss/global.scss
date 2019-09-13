@@ -37,6 +37,12 @@ button {
   cursor: pointer;
 }
 
+input {
+  border: none;
+  background: none;
+  outline: none;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 11px;
