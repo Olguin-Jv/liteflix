@@ -12,11 +12,11 @@
               .navigation
                 nuxt-link(v-for='section in sections.slice(0,4)' :key="section.to" :to="section.to" :data-str="section.name") {{section.name}}
               .add-btn-wrapp
-                button(@click="click").btn.add-animated
+                button(@click="addMovie").btn.add-animated
                   span agregar película
             .right
               a Niños
-              .bell-wrapp(:class="{active: bell}")
+              .bell-wrapp(:class="{active: bell}" @click="bellClick")
                 .inner
               .menu-dropdown
                 .inner(@click="toggleDropdown")
@@ -35,6 +35,7 @@
     .mobile-dropdown
       button.burger-btn(@click="toggleDropdown")
         div(:class="{active: menuDropdown}")
+
     .dropdown-menu(:class="{active: menuDropdown}")
       a.logo(href='#')
         img(src='img/liteflix-logo.svg' alt="liteflix logo")
@@ -47,14 +48,14 @@
         nuxt-link(to="help" @click.native="toggleDropdown") ayuda
       .wrapper.bot
         nuxt-link(to="change-user" @click.native="toggleDropdown")
-          .bell-wrapp(:class="{active: bell}")
+          .bell-wrapp(:class="{active: bell}" @click="bellClick")
             .inner
           span novedades
         nuxt-link(to="change-user" @click.native="toggleDropdown") series
         nuxt-link(to="change-user" @click.native="toggleDropdown") películas
         nuxt-link(to="change-user" @click.native="toggleDropdown") mi lista
         nuxt-link(to="change-user" @click.native="toggleDropdown") niños
-        button(@click="click").btn.add-animated.active
+        button(@click="() => {toggleDropdown(); addMovie();}").btn.add-animated.active
           span agregar película
         nuxt-link(to="change-user" @click.native="toggleDropdown") log out
     .bg(:class="{active: menuDropdown}" @click="toggleDropdown")
@@ -95,7 +96,7 @@ export default {
     window.removeEventListener('scroll', this.handleNavScroll)
   },
   methods: {
-    click () {
+    bellClick () {
       this.bell = !this.bell
     },
     toggleDropdown () {
@@ -103,6 +104,9 @@ export default {
     },
     handleNavScroll () {
       window.scrollY > 50 ? (this.navBg = true) : (this.navBg = false)
+    },
+    addMovie () {
+      this.$bus.$emit('toggle-add-movie')
     }
   }
 }

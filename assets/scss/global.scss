@@ -36,3 +36,26 @@ button {
   outline: none;
   cursor: pointer;
 }
+
+input {
+  border: none;
+  background: none;
+  outline: none;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 11px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $c-6;
+  border-radius: 30px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $c-3;
+  border-radius: 30px;
+}
